@@ -1,10 +1,10 @@
 ### Structure  
 .    
-├── DancingLine.tcl    
-├── README.md    
+├── DancingLine.tcl  // TCL脚本  
+├── README.md  //本文件  
 ├── bit  // 可用的bitstream    
-│   ├── test-use.bit    
-│   └── turn_point_reconstructed.bit    
+│   ├── test-use.bit // debug使用   
+│   └── turn_point_reconstructed.bit // 展示使用    
 ├── ip  // MusicPlayer模块使用自定义IP的模式进行独立的synthesis    
 │   ├── MusicPlayer.v    
 │   ├── component.xml      
@@ -41,7 +41,7 @@
     │   ├── PS2keyboard.v    
     │   ├── fre_div.v    
     │   └── misc.v    
-    ├── top.v    
+    ├── top.v  // 主模块  
     ├── video  // 视频  
     │   ├── VideoPlayer.v    
     │   ├── dotper_rom.v    
@@ -54,10 +54,8 @@
     │   ├── map_rom.v    
     │   ├── number_rom.v    
     │   ├── vgaAnimate.v    
-    │   ├── vgaChooseSong.v    
-    │   ├── vgaMenu_deprecated.v    
-    │   ├── vgaPlay.v    
-    │   ├── vga_menu_rom_deprecated.v    
+    │   ├── vgaChooseSong.v      
+    │   ├── vgaPlay.v       
     │   └── vga_timing.v    
     └── xdc  // 约束文件  
         └── DancingLine.xdc  
