@@ -12,7 +12,7 @@ set author        "default"
 set date          [clock format [clock seconds] -format "%m%d"]
 set part          "xc7a35tcsg324-1"
 set project_name  "DancingLine_$prjVersion\_$author\_$date"
-set xdcName       "DancingLine_V2.0"
+set xdcName       "DancingLine"
 set top_name      "top"
 
 set origin_dir    "./src"
@@ -43,7 +43,7 @@ set script_file "DancingLine.tcl"
 proc help {} {
   variable script_file
   puts "\nDescription:"
-  puts "\tUsed for szgGroup One only. \n"
+  puts "\tUsed for XXX One only. \n"
   puts "Syntax:"
   puts "$script_file"
   puts "$script_file -tclargs \[--origin_dir <path>\]"
