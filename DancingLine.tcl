@@ -15,13 +15,6 @@ set xdcName       "DancingLine"
 set top_name      "top"
 
 set origin_dir    "./src"
-set topPath       "$origin_dir/$top_name.v"
-set audioDir      "$origin_dir/audio"
-set videoDir      "$origin_dir/video"
-set miscDir       "$origin_dir/misc"
-set ipDir         "$origin_dir/../ip"
-set constrPath    "$origin_dir/xdc/$xdcName.xdc"
-
 set jobs_number   8
 set ip_synth      0
 
@@ -68,7 +61,7 @@ proc help {} {
 }
 
 if { $::argc > 0 } {
-  for {set i 0} {$i < [llength $::argc]} {incr i} {
+  for {set i 0} {$i < [llength $::argv]} {incr i} {
     set option [string trim [lindex $::argv $i]]
     switch -regexp -- $option {
       "--origin_dir"   { incr i; set origin_dir [lindex $::argv $i] }
@@ -89,6 +82,12 @@ if { $::argc > 0 } {
 
 #
 set project_name  "DancingLine_$prjVersion\_$author\_$date"
+set topPath       "$origin_dir/$top_name.v"
+set audioDir      "$origin_dir/audio"
+set videoDir      "$origin_dir/video"
+set miscDir       "$origin_dir/misc"
+set ipDir         "$origin_dir/../ip"
+set constrPath    "$origin_dir/xdc/$xdcName.xdc"
 
 # Create project
 create_project -force ${project_name} ${project_path}/${project_name} -part $part

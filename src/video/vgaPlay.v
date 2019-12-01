@@ -64,7 +64,7 @@ module vgaPlay(
 	wire [15:0] scroll_x, scroll_y;
 	wire [9:0] scroll_block_x, scroll_block_y;
     wire [10:0] refer_x, refer_y;
-	wire [5:0] block_pixel_x, block_pixel_y;
+	wire [4:0] block_pixel_x, block_pixel_y;
 	reg  [9:0] map_height;
 
 	assign scroll_x = head_x - 319;
@@ -95,7 +95,7 @@ module vgaPlay(
               PLAY_STATE_PAUSED     = 2, 
               PLAY_STATE_STOPPED    = 3;
     //
-    // â”€â”€â”€ PLAY FSM â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // â”?â”?â”? PLAY FSM â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?
     //
     
 	always @(posedge clk or posedge reset) begin	   
@@ -130,7 +130,7 @@ module vgaPlay(
 	       end
 	   endcase
 	end
-    // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?â”?
 
     wire block_type;
     wire [9:0] x1, y1, x2, y2;
@@ -143,10 +143,10 @@ module vgaPlay(
         if (reset) begin  // reset head position
             head_x_raw <= 17'd672;
             head_y_raw <= 17'd480;
-            direction <= 1'b1;
+            direction <= 1'b0;
         end else begin
             if (play_state == PLAY_STATE_PLAYING) begin
-                if (press) begin
+                if (press && head_x_raw>=17'd697) begin
                     direction = ~direction;
                 end
                 case(speed) // move according to direction & speed        

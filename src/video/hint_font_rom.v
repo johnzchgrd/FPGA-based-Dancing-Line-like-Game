@@ -1,23 +1,30 @@
 `timescale 1ns / 1ps
 
-module hint_font_rom(
-   input valid,
+module hint_font_reader(
+   input clk,
    input [4:0]character,
    input [9:0]x,
    input [4:0]y,
-   output reg font_type
+   output font_type
+    );
+    wire [12:0] hf_in;
+    wire dout;
+    hint_font_rom hfr(clk, hf_in, dout);
+    
+    assign hf_in = 12*character+x+348*y-12;
+    assign font_type = (character==5'd0) ? 1'b0 : dout;
+    
+endmodule
+
+module hint_font_rom(
+    input clk,
+    input [12:0] hf_in,
+    output reg dout
     );
     wire memfont [6263:0];
-    always@(*) begin
-        if (valid) begin
-            if(character==5'd0)begin
-                font_type = 1'b0;
-            end else begin
-                font_type = memfont[12*(character-1)+x+348*y];
-            end
-        end else begin
-            font_type = 1'b0;
-        end
+    
+    always @(posedge clk) begin
+        dout = memfont[hf_in];
     end
     
     assign memfont[0   ] = 1'd0;

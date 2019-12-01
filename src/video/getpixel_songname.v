@@ -203,8 +203,8 @@ module getpixel_songname(
 
     end
     
-    hint_font_rom hf1(
-        .valid          (valid), 
+    hint_font_reader hf1(
+        .clk            (clk),
         .character      (character),
         .x              (x),
         .y              (y),

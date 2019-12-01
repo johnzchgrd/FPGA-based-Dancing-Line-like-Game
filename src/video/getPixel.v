@@ -9,7 +9,7 @@ module getPixel(
     input type,
     input press,
     input [9:0] progress,
-    input [5:0] x, y,
+    input [4:0] x, y,
     input [9:0] h_cnt, v_cnt,
     input [15:0] head_x, head_y,
     input [15:0] scroll_x_in, scroll_y_in,
@@ -38,7 +38,7 @@ module getPixel(
     assign validnum = ((h_cnt>=538 && h_cnt<574) || (h_cnt>=582 && h_cnt<600)) && (v_cnt >= 10'd16 && v_cnt < 10'd40) && valid;
     assign validdot = ((h_cnt>=574 && h_cnt<582) || (h_cnt>=600 && h_cnt<624)) && (v_cnt >= 10'd16 && v_cnt < 10'd40) && valid;
     
-    image_rom imager(
+    image_reader imager(
         .clk(clk), .valid(valid), .type(type), .song(song), .x(x), .y(y), .dout(imgout)
         );
     number_rom numr(
@@ -235,8 +235,8 @@ module getPixel(
             end 
         end
     end
-    hint_font_rom hf2(
-        .valid          (valid), 
+    hint_font_reader hf2(
+        .clk            (clk),
         .character      (character),
         .x              (x_tips),
         .y              (y_tips),
