@@ -3,7 +3,7 @@
 #          Script / Workspace Setup
 #--------------------------------------------
 # important settings, deal carefully
-set project_path  "../"
+set project_path  "./test"
 set prjVersion    "V2.3.3"
 set author        "default"
 #*******************************************
@@ -11,7 +11,6 @@ set author        "default"
 #*******************************************
 set date          [clock format [clock seconds] -format "%m%d"]
 set part          "xc7a35tcsg324-1"
-set project_name  "DancingLine_$prjVersion\_$author\_$date"
 set xdcName       "DancingLine"
 set top_name      "top"
 
@@ -43,7 +42,7 @@ set script_file "DancingLine.tcl"
 proc help {} {
   variable script_file
   puts "\nDescription:"
-  puts "\tUsed for XXX One only. \n"
+  puts "\tUsed for Vivado RTL project set-up only. \n"
   puts "Syntax:"
   puts "$script_file"
   puts "$script_file -tclargs \[--origin_dir <path>\]"
@@ -88,6 +87,8 @@ if { $::argc > 0 } {
   }
 }
 
+#
+set project_name  "DancingLine_$prjVersion\_$author\_$date"
 
 # Create project
 create_project -force ${project_name} ${project_path}/${project_name} -part $part
@@ -145,7 +146,8 @@ set files [list \
  "[file normalize "$videoDir/vgaAnimate.v"]"\
  "[file normalize "$videoDir/VideoPlayer.v"]"\
 ]
-set imported_files [import_files -fileset sources_1 $files]
+# set imported_files [import_files -fileset sources_1 $files]
+add_files -fileset sources_1 $files
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
@@ -161,7 +163,9 @@ set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
 set file "[file normalize $constrPath]"
-set file_imported [import_files -fileset constrs_1 $file]
+# set file_imported [import_files -fileset constrs_1 $file]
+add_files -fileset constrs_1 $file
+
 # set file $constrPath
 # set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 # set_property -name "file_type" -value "XDC" -objects $file_obj
