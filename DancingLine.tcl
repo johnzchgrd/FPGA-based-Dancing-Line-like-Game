@@ -4,7 +4,7 @@
 #--------------------------------------------
 # important settings, deal carefully
 set project_path  "../"
-set prjVersion    "V0.0.0"
+set prjVersion    "V2.3.3"
 set author        "default"
 #*******************************************
 # SHOULD NOT change commands below
@@ -142,8 +142,6 @@ set files [list \
  "[file normalize "$videoDir/vgaChooseSong.v"]"\
  "[file normalize "$videoDir/vgaPlay.v"]"\
  "[file normalize "$videoDir/vga_timing.v"]"\
- "[file normalize "$videoDir/vgaMenu_deprecated.v"]"\
- "[file normalize "$videoDir/vga_menu_rom_deprecated.v"]"\
  "[file normalize "$videoDir/vgaAnimate.v"]"\
  "[file normalize "$videoDir/VideoPlayer.v"]"\
 ]
