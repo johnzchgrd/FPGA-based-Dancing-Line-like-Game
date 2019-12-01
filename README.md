@@ -1,4 +1,5 @@
-### Structure  
+# Structure Overview 
+```
 .    
 ├── DancingLine.tcl  // TCL脚本  
 ├── README.md  //本文件  
@@ -59,3 +60,45 @@
     │   └── vga_timing.v    
     └── xdc  // 约束文件  
         └── DancingLine.xdc  
+```
+# How to set-up using Vivado TCL
+## 1. Clone the project
+>You may download zip or clone like this:
+```
+git clone https://github.com/johnzchgrd/FPGA-based-Dancing-Line-like-Game.git
+```
+## 2. Create Vivado Project (Project Mode)
+
+>modify [runme.bat]([./runme.bat](https://github.com/johnzchgrd/FPGA-based-Dancing-Line-like-Game/blob/master/runme.bat)) with your own name and other stuffs.
+Then run:
+```
+.\runme.bat
+```
+>This will create a Vivado project in the project dir (which is, by default, ".\test"). Then you could open .xpr or using command line as you like.
+
+>Note that if the path characters __exceed__ 260(according to different OS version), vivado cannot create the project correctly.
+
+# How to contribute
+### 1. Create the porject and debug...
+>You are welcomed to pull any request reasonable or any problem encountered while doing this project.
+### 2. Commit using git (please do not upload your project)
+>Because in the tcl file, we have set that vivado will ___not___ import files into the project source directory, so and changes you applied in the text editor of Vivado [or your own] will directly change the file in the root directory.
+```
+git add . 
+git commit . -m "put some comment here"
+git push github_upload master[or other branch that exists]
+```
+
+# Special Thanks
+>NOTE: This part will update when the competition is finished.
+## Fellows
+>_We kept in good communication while doing this project.I still remember those days we debug together till midnight. We will both cherish this period of fighting as a team._
+---
+### xxx
+>who designed and implemented music player part.
+### yyy
+>who provided good-looking fonts, implemented progress display part and other tools.
+### zzz
+>who designed and implemented video player part.
+## Academic Advisor
+### __AAA__
