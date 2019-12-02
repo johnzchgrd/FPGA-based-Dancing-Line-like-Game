@@ -1,18 +1,31 @@
 `timescale 1ns / 1ps
 
+module hint_songsel_reader(
+    input clk,
+    input [8:0]x,
+    input [4:0]y,
+    output songsel_type
+    );
+
+    wire [13:0] hs_in;
+    assign hs_in = x+y*373;
+
+    hint_songsel_rom hsr(
+        .clk        (clk),
+        .hs_in      (hs_in),
+        .dout       (songsel_type)
+    );
+
+endmodule
+
 module hint_songsel_rom(
-   input valid,
-   input [8:0]x,
-   input [4:0]y,
-   output reg songsel_type
+    input clk,
+    input [13:0] hs_in,
+    output reg dout
     );
     wire memhint[8578:0];
-    always @(*)begin
-        if(valid)begin
-            songsel_type = memhint[x+y*373];
-        end else begin
-            songsel_type = 1'b0;
-        end
+    always @(posedge clk)begin
+        dout = memhint[hs_in];
     end
     
     assign memhint[0   ] = 1'd0;

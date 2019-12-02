@@ -16,8 +16,8 @@ module getpixel_songsel(
     assign v_cnt_in = v_cnt-16;
 
     // FIXME incompatible port width
-    hint_songsel_rom hints1(
-        .valid          (valid),
+    hint_songsel_reader hints1(
+        .clk            (clk),
         .x              (h_cnt_in[8:0]),
         .y              (v_cnt_in[4:0]),
         .songsel_type   (songsel_type)

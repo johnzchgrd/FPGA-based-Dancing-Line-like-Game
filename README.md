@@ -34,7 +34,7 @@
 │   └── xgui    
 │       ├── MusicPlayer_forDL_v1_1.tcl    
 │       └── MusicPlayer_v1_0.tcl    
-├── runme.bat  // 暂时传参有问题但能生成Vivado项目的脚本  
+├── runme.bat  // 生成Vivado项目的脚本，可自定义贡献者、版本号等  
 └── src  // 主要源代码部分  
     ├── audio  // 音频  
     │   └── string_displays.v    
