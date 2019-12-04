@@ -1,23 +1,31 @@
 `timescale 1ns / 1ps
 
-module dotper_rom(
-    input valid,
+module dotper_rom_reader(
+    input clk,
     input [4:0]x1,
     input [4:0]x2,
     input [4:0]y,
-    output reg[1:0] ui_pixel_type1,
-    output reg[1:0] ui_pixel_type2
+    output [1:0] ui_pixel_type1,
+    output [1:0] ui_pixel_type2
+    );
+    wire [9:0] dpt_in1;
+    wire [9:0] dpt_in2;
+    dotper_rom dpr1(clk,dpt_in1, ui_pixel_type1);
+    dotper_rom dpr2(clk,dpt_in2, ui_pixel_type2);
+
+    assign dpt_in1 = 32*y+x1;
+    assign dpt_in2 = 32*y+x2+8;
+    
+endmodule
+
+module dotper_rom(
+    input clk,
+    input [9:0]dtr_in,
+    output reg[1:0] dout
     );
     wire [1:0] memdotper[767:0];
-    
-    always@(*)begin
-        if (valid) begin
-            ui_pixel_type1 = memdotper[32*y+x1];
-            ui_pixel_type2 = memdotper[32*y+x2+8];
-        end else begin
-            ui_pixel_type1 = 2'b00;
-            ui_pixel_type2 = 2'b00;
-        end
+    always @(posedge clk)begin
+        dout = memdotper[dtr_in];
     end
           
     assign memdotper[0   ] = 2'd0;

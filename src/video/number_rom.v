@@ -1,34 +1,55 @@
 `timescale 1ns / 1ps
-
-module number_rom(
-    input valid,
+module number_rom_reader(
+    input clk,
     input [9:0]progress,
     input [4:0]x1,
     input [4:0]x2,
     input [4:0]x3,
     input [4:0]y,
-    output reg[1:0] ui_pixel_type1,
-    output reg[1:0] ui_pixel_type2,
-    output reg[1:0] ui_pixel_type3
+    output [1:0] ui_pixel_type1,
+    output [1:0] ui_pixel_type2,
+    output [1:0] ui_pixel_type3
     );
+
     wire [3:0] prog1, prog2, prog3;
-        
+    wire [1:0] ui_pixel_type1_mid;
+    assign ui_pixel_type1 = ui_pixel_type1_mid & {1'd0,prog1!=0};
     assign prog3 = progress % 10;
     assign prog2 = progress / 10 % 10;
     assign prog1 = (progress>=1000) ? 0 : progress / 100;
-    
+
+    wire [12:0] nbr_in1,nbr_in2,nbr_in3;
+
+    assign nbr_in1 = 180*y+18*prog1+x1;
+    assign nbr_in2 = 180*y+18*prog2+x2;
+    assign nbr_in3 = 180*y+18*prog3+x3;
+    number_rom nbr1(
+        .clk        (clk),
+        .nbr_in      (nbr_in1),
+        .dout       (ui_pixel_type1_mid)
+    );
+    number_rom nbr2(
+        .clk        (clk)   , 
+        .nbr_in      (nbr_in2),
+        .dout       (ui_pixel_type2)
+    );
+    number_rom nbr3(
+        .clk        (clk),    
+        .nbr_in      (nbr_in3),
+        .dout       (ui_pixel_type3)
+    );
+
+endmodule
+module number_rom(
+    input clk,
+    input [12:0]nbr_in,
+    output reg[1:0] dout
+    );
     wire [1:0] memnumber [4319:0];
-    always@(*) begin
-        if (valid) begin
-            ui_pixel_type1 = (prog1 == 0) ? 2'd0 :memnumber[180*y+18*prog1+x1];
-            ui_pixel_type2 = memnumber[180*y+18*prog2+x2];
-            ui_pixel_type3 = memnumber[180*y+18*prog3+x3];
-        end else begin
-            ui_pixel_type1 = 2'b00;
-            ui_pixel_type2 = 2'b00;
-            ui_pixel_type3 = 2'b00;
-        end
+    always @(posedge clk)begin
+        dout = memnumber [nbr_in];
     end
+    
     
     
     assign memnumber[0   ] = 2'd0;

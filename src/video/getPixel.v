@@ -41,13 +41,13 @@ module getPixel(
     image_reader imager(
         .clk(clk), .valid(valid), .type(type), .song(song), .x(x), .y(y), .dout(imgout)
         );
-    number_rom numr(
-        .valid(validnum), .progress(progress), 
+    number_rom_reader numr(
+        .clk(clk), .progress(progress), 
         .x1(prog1_x), .x2(prog2_x), .x3(prog3_x), .y(prog_y), 
         .ui_pixel_type1(prog1_type), .ui_pixel_type2(prog2_type), .ui_pixel_type3(prog3_type)
         );
-    dotper_rom dotr(
-        .valid(validdot), .x1(progdot_x), .x2(progper_x), .y(prog_y),
+    dotper_rom_reader dotr(
+        .clk(clk), .x1(progdot_x), .x2(progper_x), .y(prog_y),
         .ui_pixel_type1(progdot_type), .ui_pixel_type2(progper_type)
         );
     
