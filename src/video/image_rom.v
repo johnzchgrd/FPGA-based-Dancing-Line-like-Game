@@ -1,6 +1,5 @@
 module image_reader (
     input clk,
-    input valid,
     input type,
     input [1:0] song,
     input [4:0] x, y,

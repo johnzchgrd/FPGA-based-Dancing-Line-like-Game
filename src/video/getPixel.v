@@ -39,7 +39,7 @@ module getPixel(
     assign validdot = ((h_cnt>=574 && h_cnt<582) || (h_cnt>=600 && h_cnt<624)) && (v_cnt >= 10'd16 && v_cnt < 10'd40) && valid;
     
     image_reader imager(
-        .clk(clk), .valid(valid), .type(type), .song(song), .x(x), .y(y), .dout(imgout)
+        .clk(clk),.type(type), .song(song), .x(x), .y(y), .dout(imgout)
         );
     number_rom_reader numr(
         .clk(clk), .progress(progress), 

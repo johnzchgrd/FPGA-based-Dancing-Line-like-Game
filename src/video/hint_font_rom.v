@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 module hint_font_reader(
-   input clk,
-   input [4:0]character,
-   input [9:0]x,
-   input [4:0]y,
-   output font_type
+    input clk,
+    input [4:0]character,
+    input [9:0]x,
+    input [4:0]y,
+    output font_type
     );
     wire [12:0] hf_in;
     wire dout;

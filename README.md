@@ -32,8 +32,7 @@
 │   ├── triangle2_rom.v    
 │   ├── triangle3_rom.v    
 │   └── xgui    
-│       ├── MusicPlayer_forDL_v1_1.tcl    
-│       └── MusicPlayer_v1_0.tcl    
+│       └── MusicPlayer_forDL_v1_1.tcl    
 ├── runme.bat  // 生成Vivado项目的脚本，可自定义贡献者、版本号等  
 └── src  // 主要源代码部分  
     ├── audio  // 音频  
@@ -69,10 +68,10 @@ git clone https://github.com/johnzchgrd/FPGA-based-Dancing-Line-like-Game.git
 ```
 ## 2. Create Vivado Project (Project Mode)
 
->modify [runme.bat]([./runme.bat](https://github.com/johnzchgrd/FPGA-based-Dancing-Line-like-Game/blob/master/runme.bat)) with your own name and other stuffs.
+>pass to [runme.bat]([./runme.bat](https://github.com/johnzchgrd/FPGA-based-Dancing-Line-like-Game/blob/master/runme.bat)) with your own name and change the batch if you want to change other stuffs.
 Then run:
 ```
-.\runme.bat
+.\runme.bat your_name_abbreviation
 ```
 >This will create a Vivado project in the project dir (which is, by default, ".\test"). Then you could open .xpr or using command line as you like.
 
