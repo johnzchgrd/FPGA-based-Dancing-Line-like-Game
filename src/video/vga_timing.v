@@ -26,9 +26,15 @@ module vga_640x480(pclk, reset, hsync, vsync, valid, h_cnt, v_cnt);
    wire         h_valid;
    wire         v_valid;
    
+   wire         reset_out;
+   oneShot osxx(
+      .clk(pclk),
+      .signal_in(reset),
+      .signal_out(reset_out)
+   );
    
-   always @(posedge reset or posedge pclk)
-      if (reset == 1'b1)
+   always @(posedge pclk)
+      if (reset_out == 1'b1)
          x_cnt <= 1;
       else 
       begin
@@ -40,7 +46,7 @@ module vga_640x480(pclk, reset, hsync, vsync, valid, h_cnt, v_cnt);
    
    
    always @(posedge pclk)
-      if (reset == 1'b1)
+      if (reset_out == 1'b1)
          y_cnt <= 1;
       else 
       begin
