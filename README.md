@@ -5,8 +5,9 @@
 ├── README.md  //本文件  
 ├── bit  // 可用的bitstream    
 │   ├── test-use.bit // debug使用   
+│   ├── top.bin // final  
 │   └── turn_point_reconstructed.bit // 展示使用    
-├── ip  // MusicPlayer模块使用自定义IP的模式进行独立的synthesis    
+├── ip  // MusicPlayer模块使用自定义IP的模式进行out of context synthesis    
 │   ├── MusicPlayer.v    
 │   ├── component.xml      
 │   ├── crash_rom.v        
@@ -33,7 +34,7 @@
 │   ├── triangle3_rom.v    
 │   └── xgui    
 │       └── MusicPlayer_forDL_v1_1.tcl    
-├── runme.bat  // 生成Vivado项目的脚本，可自定义贡献者、版本号等  
+├── runme.bat  // 生成Vivado项目的脚本，可自定义name、version等  
 └── src  // 主要源代码部分  
     ├── audio  // 音频  
     │   └── string_displays.v    
@@ -81,7 +82,7 @@ Then run:
 ### 1. Create the porject and debug...
 >You are welcomed to pull any request reasonable or any problem encountered while doing this project.
 ### 2. Commit using git (please do not upload your project)
->Because in the tcl file, we have set that vivado will ___not___ import files into the project source directory, so and changes you applied in the text editor of Vivado [or your own] will directly change the file in the root directory.
+>In the tcl file, we have set that vivado will ___not___ import files into the project source directory, such changes you've applied in the text editor of vivado [or your own] will directly change the file in the root directory.
 ```
 git add . 
 git commit . -m "put some comment here"
@@ -89,15 +90,15 @@ git push github_upload master[or other branch that exists]
 ```
 
 # Special Thanks
->NOTE: This part will update when the competition is finished.
+
 ## Fellows
->_We kept in good communication while doing this project.I still remember those days we debug together till midnight. We will both cherish this period of fighting as a team._
+>_We kept in good communication while doing this project. I still remember those days we debug together till midnight. We will both cherish this period of fighting as a team._
 ---
-### xxx
+### sm
 >who designed and implemented music player part.
-### yyy
+### swc
 >who provided good-looking fonts, implemented progress display part and other tools.
-### zzz
+### zch
 >who designed and implemented video player part.
 ## Academic Advisor
-### __AAA__
+### szg
